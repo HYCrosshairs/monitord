@@ -1,11 +1,12 @@
 #pragma once
 
+//#include "IObserver.hpp"
 #include "ISubject.hpp"
 
 #include <vector>
 #include <stdint.h>
 
-namespace system::service::daemon
+namespace sys::service::daemon
 {
 
 constexpr char CPU_TEMP_SENSOR_1[] = "/sys/class/hwmon/hwmon0/device/hwmon0/temp1_input";
@@ -16,7 +17,7 @@ static const char* TEMP_FILES[] = { CPU_TEMP_SENSOR_1,
                                     CPU_TEMP_SENSOR_2, 
                                     CPU_TEMP_SENSOR_3 };
 
-constexpr uint8_t CPU_TEMP_IDX_MAX = 3;
+constexpr float CPU_TEMP_IDX_MAX = 3.0f;
 
 class CPUTemperatureMonitor : public ISubject<float>
 {
@@ -30,10 +31,11 @@ public:
 
     void setTemperature();
     
-private:
     float getTemperature() const;
+private:
+    
 
-    float mCPUTemp;
+    int mCPUTemp;
     std::vector<IObserver<float>*> observers;
 };   
 } // namespace system::service::daemon
