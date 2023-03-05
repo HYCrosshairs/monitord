@@ -1,11 +1,12 @@
 #pragma once
 
-namespace sys::service::daemon
+namespace service
 {
-template <class Obs>
+template <typename ...Args>
 class IObserver
 {
 public:
-    virtual void update(Obs data) = 0;
+    virtual void update(Args ...args) = 0;
+    virtual ~IObserver() = default;
 };
-} // namespace sys::service::daemon
+} // namespace service

@@ -9,8 +9,10 @@ add_compile_options(-Wall)# -Wextra -Wconversion -pedantic -Wformat-security -Wf
 include_directories(inc)
 
 set(SOURCES
-    src/CPUTemperatureMonitor.cpp
-    src/CPUTemperatureObserver.cpp
+    src/SystemObserver.cpp
+    src/SystemMonitor.cpp
+    src/WeatherStation.cpp
+    src/WeatherObserver.cpp
     main.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${RESOURCES})

@@ -1,15 +1,39 @@
 #pragma once
 
 #include "IObserver.hpp"
+#include <vector>
+#include <algorithm>
 
-namespace sys::service::daemon
+namespace service
 {
-template <class T>
+template <typename ...Args>
 class ISubject
 {
 public:
-    virtual void attach(IObserver<T>* observer) = 0; // suscribe
-    virtual void detach(IObserver<T>* observer) = 0; //  unsucribe
-    virtual void notify(T data) = 0;
+    void subscribe(IObserver<Args...>* observer)
+    {
+        observers.push_back(observer);
+    }
+
+    void unsubscribe(IObserver<Args...>* observer)
+    {
+        auto iterator = std::find(observers.begin(), observers.end(), observer);
+    
+        if(iterator not_eq observers.end())
+        {
+            observers.erase(iterator);
+        }
+    }
+
+    void notify(Args... args)
+    {
+        for (auto observer : observers)
+        {
+            observer->update(std::forward<Args>(args)...);
+        }
+    }
+
+private:
+    std::vector<IObserver<Args...>*> observers;
 };    
-} // namespace sys::service::daemon
+} // namespace service

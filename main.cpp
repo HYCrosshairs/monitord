@@ -1,21 +1,21 @@
-#include "CPUTemperatureMonitor.hpp"
-#include "CPUTemperatureObserver.hpp"
+#include "SystemMonitor.hpp"
+#include "SystemObserver.hpp"
 
 #include <iostream>
 
-using namespace sys::service::daemon;
+using namespace service::system::daemon;
 
 int main(int argc, const char* argv[])
 {
-    CPUTemperatureMonitor cpuTempMonitor;
+    SystemMonitor systemMonitor;
 
-    CPUTemperatureObserver cpuTempObserver;
+    SystemObserver systemObserver;
     
-    cpuTempMonitor.attach(&cpuTempObserver);
+    systemMonitor.subscribe(&systemObserver);
 
-    cpuTempMonitor.setTemperature();
+    systemMonitor.fetchCPUTemperature();
 
-    cpuTempMonitor.detach(&cpuTempObserver);
+    systemMonitor.unsubscribe(&systemObserver);
     
     return 0;
 }
