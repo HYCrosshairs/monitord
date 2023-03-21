@@ -25,10 +25,9 @@ public:
     ~SystemMonitor() = default;
 
     void fetchCPUTemperature();
-    
-    float getTemperature() const;
 
 private:
+    float getTemperature() const;
     float mCPUTemp;
 }; 
 } // namespace service::system::daemon

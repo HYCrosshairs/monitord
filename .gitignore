@@ -32,3 +32,8 @@
 *.app
 *.cmake
 .vscode
+
+CMakeFiles
+*.cmake
+CMakeCache.txt
+Makefile

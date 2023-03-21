@@ -4,7 +4,7 @@ include(GNUInstallDirs)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
-add_compile_options(-Wall)# -Wextra -Wconversion -pedantic -Wformat-security -Wfatal-errors)
+add_compile_options(-Wall -Wextra -Wconversion -pedantic -Wformat-security -Wfatal-errors)
 
 include_directories(inc)
 
