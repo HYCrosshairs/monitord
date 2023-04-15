@@ -1,6 +1,8 @@
 #include "SystemMonitor.hpp"
 #include "SystemObserver.hpp"
 
+#include <nlohmann/json.hpp>
+
 #include <iostream>
 
 using namespace service::system::daemon;

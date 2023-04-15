@@ -8,6 +8,9 @@ add_compile_options(-Wall -Wextra -Wconversion -pedantic -Wformat-security -Wfat
 
 include_directories(inc)
 
+set(NLOHMANN_JSON_DIR "${CMAKE_SOURCE_DIR}/libs/nlohmann-json")
+include_directories(${NLOHMANN_JSON_DIR}/include)
+
 set(SOURCES
     src/SystemObserver.cpp
     src/SystemMonitor.cpp
@@ -16,6 +19,7 @@ set(SOURCES
     main.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${RESOURCES})
+target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
 
 set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
 
