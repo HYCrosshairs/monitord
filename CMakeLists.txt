@@ -3,13 +3,13 @@ project(monitord VERSION 1.0.0 LANGUAGES CXX)
 include(GNUInstallDirs)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_CXX_STANDARD 17)
 
 add_compile_options(-Wall -Wextra -Wconversion -pedantic -Wformat-security -Wfatal-errors)
 
-include_directories(inc)
+find_package(nlohmann_json REQUIRED)
 
-set(NLOHMANN_JSON_DIR "${CMAKE_SOURCE_DIR}/libs/nlohmann-json")
-include_directories(${NLOHMANN_JSON_DIR}/include)
+include_directories(inc)
 
 set(SOURCES
     src/SystemObserver.cpp
@@ -19,8 +19,7 @@ set(SOURCES
     main.cpp)
 
 add_executable(${PROJECT_NAME} ${SOURCES} ${RESOURCES})
-target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
 
-set_property(TARGET ${PROJECT_NAME} PROPERTY CXX_STANDARD 17)
+target_link_libraries(${PROJECT_NAME} nlohmann_json::nlohmann_json)
 
 install(TARGETS ${PROJECT_NAME} RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
